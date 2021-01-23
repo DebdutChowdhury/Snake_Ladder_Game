@@ -1,4 +1,4 @@
-// The Player then checks for a Option. They are No Play, Ladder or Snake.
+// the player gets to exact winning position 100.
 import java.util.*;
 class DiceRoll {
 	// constants
@@ -31,43 +31,55 @@ class DiceRoll {
 		total_roll += 1;
 	}
 	
-	void option_check() {
-		Random rand = new Random();
-		choice = rand.nextInt(3) + 1;
-		System.out.println("Choice: "+choice);
+	void reachedPosition() 
+	{
 		
-		switch(choice)
+		while (plr1_pos >= STARTING_POINT && plr1_pos < END_POINT) 
 		{
-		case noplay:
-			System.out.println("noplay");
-			if (plr1_pos >= STARTING_POINT && plr1_pos < END_POINT)
-				plr1_pos += 0;
-			System.out.println("Player Position(update): "+plr1_pos);
-			break;
+			rolling_dice();
+			Random rand = new Random();
+			choice = rand.nextInt(3) + 1;
+			System.out.println("choice: "+choice);
 			
-		case ladder:
-			System.out.println("Ladder");
-			if (plr1_pos >= STARTING_POINT && plr1_pos < END_POINT)
-				plr1_pos += rand_output;
-			System.out.println("Player position(update): "+plr1_pos);
-			break;
-		
-		case snake: 
-			System.out.println("Snake");
-			if (plr1_pos >= STARTING_POINT && plr1_pos < END_POINT)
+			switch (choice) 
+			{
+			case noplay:
+				System.out.println("No Play");
+				plr1_pos += 0;
+				System.out.println("Player Position(update): "+plr1_pos);
+				break;
+				
+			case snake:
+				System.out.println("Snake");
 				plr1_pos -= rand_output;
-			System.out.println("Player Position(update): "+plr1_pos);
-			break;
+				if (plr1_pos < STARTING_POINT)
+					plr1_pos = 0;
+				System.out.println("Player Position(update): "+plr1_pos);
+				break;
+				
+			case ladder:
+				System.out.println("Ladder");
+				plr1_pos += rand_output;
+				System.out.println("Player Position(update): "+plr1_pos);
+				if (plr1_pos == END_POINT)
+					break;
+				else if (plr1_pos > END_POINT)
+					plr1_pos -= rand_output;
+				break;
+			}
+		}
+		if (plr1_pos >= 100)
+		{
+			System.out.println("we reach final position; Thank You!!");
+			System.out.println("Total Dice Roll: "+total_roll);
 		}
 	}
-	
+
 }
-
-
 public class SnakeLadder {
 
 	public static void main(String[] args) {
-		// Welcome message here
+		// TODO Auto-generated method stub
 		System.out.println("***************************************");
 		System.out.println("<--:Welcome to my Snake Ladder game:-->");
 		System.out.println("***************************************");
@@ -75,7 +87,7 @@ public class SnakeLadder {
 		DiceRoll dc = new DiceRoll();
 		dc.insert();
 		dc.rolling_dice();
-		dc.option_check();
+		dc.reachedPosition();;
 	}
 
 }
