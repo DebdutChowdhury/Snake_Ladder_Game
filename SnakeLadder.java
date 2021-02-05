@@ -8,7 +8,7 @@ class DiceRoll {
 	static int plr1_pos;
 	static int rand_output;
 	static int choice;
-	int total_roll=0;
+	int total_roll=0;  // total die roll count here
 	final int noplay = 1;
 	final int snake = 2;
 	final int ladder = 3;
@@ -71,7 +71,7 @@ class DiceRoll {
 		if (plr1_pos >= 100)
 		{
 			System.out.println("we reach final position; Thank You!!");
-			System.out.println("Total Dice Roll: "+total_roll);
+			System.out.println("Total Dice Roll: "+total_roll); // here print total die roll
 		}
 		
 		else if(plr1_pos == 100)
