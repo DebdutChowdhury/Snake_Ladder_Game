@@ -73,6 +73,11 @@ class DiceRoll {
 			System.out.println("we reach final position; Thank You!!");
 			System.out.println("Total Dice Roll: "+total_roll);
 		}
+		
+		else if(plr1_pos == 100)
+			System.out.println("YOU WIN!!, You reach the exact location");
+		else
+			System.out.println("Someting wrong");
 	}
 
 }
@@ -91,3 +96,4 @@ public class SnakeLadder {
 	}
 
 }
+
